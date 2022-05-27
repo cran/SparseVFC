@@ -1,0 +1,15 @@
+#' The Church Photos
+#'
+#' A dataset containing the vectors for the church photos.
+#'
+#' @format A list with three components:
+#' \describe{
+#'   \item{X}{The position of points in the first photo.}
+#'   \item{Y}{The position of points in the second photo.}
+#'   \item{CorrectIndex}{The indices for the correct point pairs.}
+#' }
+#' @source \url{https://github.com/jiayi-ma/VFC}
+#' @references
+#' Ma et al. (2013) \doi{10.1016/j.patcog.2013.05.017};
+#' Zhao et al. (2011) \doi{10.1109/CVPR.2011.5995336}
+"church"

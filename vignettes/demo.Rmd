@@ -1,0 +1,81 @@
+---
+title: "demo"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{demo}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+This is a demonstration of the SparseVFC algorithm. This demonstration was adapted from the script in https://github.com/jiayi-ma/VFC.
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Import related packages.
+```{r}
+library(SparseVFC)
+library(tidyverse)
+```
+
+Load and normalize the data.
+```{r}
+data(church)
+X <- church$X
+Y <- church$Y
+CorrectIndex <- church$CorrectIndex
+
+nX <- norm_vecs(X)
+nY <- norm_vecs(Y)
+```
+
+SparseVFC.
+```{r}
+set.seed(1614)
+VecFld <- SparseVFC(nX, nY - nX, silent = FALSE)
+```
+
+Make some samples for drawing the victor field.
+```{r}
+vec <- expand.grid(x = seq(-1.2, 1.2, 0.2), y = seq(-1.2, 1.2, 0.2))
+vec <- vec %>%
+  rowwise() %>%
+  mutate(v = list(predict(VecFld, c(x, y)))) %>%
+  mutate(
+    vx = v[1],
+    vy = v[2]
+  )
+```
+
+
+The accuracy for the algorithm.
+```{r}
+tibble(
+  correct = 1:126 %in% CorrectIndex,
+  VFC = 1:126 %in% VecFld$VFCIndex
+) %>% table()
+```
+(Recall: $59/(59+1) = 0.9833$; precision: $59/(59+10) = 0.8551$. Those two performance measures are the same as reported in Zhao et al., 2011 <https://doi.org/10.1109/CVPR.2011.5995336>, indicating a correct replication.)
+
+Plot the output vector field. (red arrows: correct arrows in the original data; black arrows: incorrect vectors in the original data; gray arrows: learned vector field.)
+```{r}
+library(grid)
+ggplot(vec, aes(x = x, y = y)) +
+  geom_segment(aes(xend = x + vx, yend = y + vy),
+    arrow = arrow(length = unit(0.1, "cm")), size = 0.25, alpha = 0.2
+  ) +
+  geom_segment(
+    data = cbind(nX, nY - nX) %>% as.data.frame() %>% `colnames<-`(c("x", "y", "vx", "vy")),
+    aes(xend = x + vx, yend = y + vy),
+    arrow = arrow(length = unit(0.1, "cm")), size = 0.25
+  ) +
+  geom_segment(
+    data = cbind(nX, nY - nX) %>% as.data.frame() %>% `colnames<-`(c("x", "y", "vx", "vy")) %>% slice(CorrectIndex),
+    aes(xend = x + vx, yend = y + vy),
+    arrow = arrow(length = unit(0.1, "cm")), size = 0.25, color = "red"
+  )
+```

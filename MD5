@@ -1,0 +1,17 @@
+66ee127a5de2310575c4f010eafcecf5 *DESCRIPTION
+f28d5c104ae3372768985edbc97931a1 *NAMESPACE
+90420dfbdc3ea287f1f481d524a06acb *NEWS.md
+23584fd54205a1e85bda9488ff96e8b5 *R/SparseVFC.R
+c6d506501805770a17b2decfb2a6af5f *R/data.R
+94e1d2023518cfaf15e863b68e32e22a *README.md
+d62faf2f1db3ae339253092a5be58c39 *build/partial.rdb
+54a108697983e411666d5ecba19f2e31 *build/vignette.rds
+9c006b1681cc9769b046eb7e009b5567 *data/church.rda
+af81fcc37be8e348e12c790332a21d4c *inst/doc/demo.R
+27065b3c008b98eeb377e8315a6b8b7e *inst/doc/demo.Rmd
+d2bfda15c2d70e956dfedfee219d18b3 *inst/doc/demo.html
+90e908952a6c61dc437e5d42d8a18013 *man/SparseVFC.Rd
+e19602fb2d2aaa28d253076ff1302cfa *man/church.Rd
+301d6a9932936d1cd5c633414aeb0f1d *man/norm_vecs.Rd
+3306efd342054cd7754f208d680ff6f1 *man/predict.VFC.Rd
+27065b3c008b98eeb377e8315a6b8b7e *vignettes/demo.Rmd
