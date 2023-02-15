@@ -2,7 +2,7 @@
 % Please edit documentation in R/SparseVFC.R
 \name{predict.VFC}
 \alias{predict.VFC}
-\title{Predict Method for VFC Fits.}
+\title{Predict method for VFC fits}
 \usage{
 \method{predict}{VFC}(object, newdata, ...)
 }

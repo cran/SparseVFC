@@ -2,7 +2,7 @@
 % Please edit documentation in R/SparseVFC.R
 \name{norm_vecs}
 \alias{norm_vecs}
-\title{Normalize (a Matrix of) Vectors}
+\title{Normalize (a matrix of) vectors}
 \usage{
 norm_vecs(x)
 }
@@ -10,11 +10,11 @@ norm_vecs(x)
 \item{x}{The matrix to be normalized. Each row of \code{x} represent a vector.}
 }
 \value{
-The normalized matrix with an attribution \code{scale}, which is the scale factor used for normalization.
+The normalized matrix with two attributions \code{scale} and \code{mean}, which are used for normalization.
 }
 \description{
 Normalize the data so that the mean of the vectors is \strong{0} and the variance of the vectors is 1. Here the variance of vectors is calculated by interpreting the deviation as the Euclidean distance, which means the trace of the (population) covariance matrix is 1.
 }
 \examples{
-norm_vecs(matrix(rep(1, 100), nrow = 2))
+norm_vecs(matrix(seq(1, 100), ncol = 2))
 }

@@ -151,16 +151,16 @@ get_P <- function(Y, V, sigma2, gamma, a) {
   return(list(P = P, E = E))
 }
 
-#' Normalize (a Matrix of) Vectors
+#' Normalize (a matrix of) vectors
 #'
 #' Normalize the data so that the mean of the vectors is **0** and the variance of the vectors is 1. Here the variance of vectors is calculated by interpreting the deviation as the Euclidean distance, which means the trace of the (population) covariance matrix is 1.
 #'
 #' @param x The matrix to be normalized. Each row of `x` represent a vector.
-#' @return The normalized matrix with an attribution `scale`, which is the scale factor used for normalization.
+#' @return The normalized matrix with two attributions `scale` and `mean`, which are used for normalization.
 #'
 #' @export
 #' @examples
-#' norm_vecs(matrix(rep(1, 100), nrow = 2))
+#' norm_vecs(matrix(seq(1, 100), ncol = 2))
 norm_vecs <- function(x) {
   n <- nrow(x)
   xm <- colMeans(x)
@@ -172,12 +172,13 @@ norm_vecs <- function(x) {
   return(
     structure(
       X,
+      mean = xm,
       scale = xscale
     )
   )
 }
 
-#' Predict Method for VFC Fits.
+#' Predict method for VFC fits
 #'
 #' Predicted values based on `VFC` objects.
 #'
