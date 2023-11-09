@@ -1,4 +1,4 @@
-## ---- include = FALSE---------------------------------------------------------
+## ----include = FALSE----------------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -43,16 +43,16 @@ tibble(
 library(grid)
 ggplot(vec, aes(x = x, y = y)) +
   geom_segment(aes(xend = x + vx, yend = y + vy),
-    arrow = arrow(length = unit(0.1, "cm")), size = 0.25, alpha = 0.2
+    arrow = arrow(length = unit(0.1, "cm")), linewidth = 0.25, alpha = 0.2
   ) +
   geom_segment(
     data = cbind(nX, nY - nX) %>% as.data.frame() %>% `colnames<-`(c("x", "y", "vx", "vy")),
     aes(xend = x + vx, yend = y + vy),
-    arrow = arrow(length = unit(0.1, "cm")), size = 0.25
+    arrow = arrow(length = unit(0.1, "cm")), linewidth = 0.25
   ) +
   geom_segment(
     data = cbind(nX, nY - nX) %>% as.data.frame() %>% `colnames<-`(c("x", "y", "vx", "vy")) %>% slice(CorrectIndex),
     aes(xend = x + vx, yend = y + vy),
-    arrow = arrow(length = unit(0.1, "cm")), size = 0.25, color = "red"
+    arrow = arrow(length = unit(0.1, "cm")), linewidth = 0.25, color = "red"
   )
 
